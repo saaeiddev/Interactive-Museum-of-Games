@@ -34,26 +34,33 @@ function wireTilt(cards) {
   });
 }
 
-function repairGameCovers() {
-  const tmnt = document.querySelector('.game-card--tmnt img');
-  if (tmnt) {
-    tmnt.src = 'https://gamefaqs.gamespot.com/a/box/7/9/5/49795_front.jpg';
-    tmnt.referrerPolicy = 'no-referrer';
-  }
+function setCoverWithFallback(img, sources) {
+  if (!img || !sources?.length) return;
+  let index = 0;
+  img.referrerPolicy = 'no-referrer';
+  img.onerror = () => {
+    index += 1;
+    if (index < sources.length) img.src = sources[index];
+    else img.onerror = null;
+  };
+  img.src = sources[0];
+}
 
-  const wile = document.querySelector('.game-card--wile img');
-  if (wile) {
-    const primary = 'https://www.gamesdatabase.org/Media/SYSTEM/Sega_Game_Gear/Box/big/Desert_Speedtrap_Starring_Road_Runner_And_Wile_E._Coyote_-_1993_-_Sega.jpg';
-    const fallback = 'https://gamefaqs.gamespot.com/a/box/4/8/1/48481_front.jpg';
-    wile.referrerPolicy = 'no-referrer';
-    wile.onerror = () => {
-      if (wile.src !== fallback) {
-        wile.onerror = null;
-        wile.src = fallback;
-      }
-    };
-    wile.src = primary;
-  }
+function repairGameCovers() {
+  setCoverWithFallback(document.querySelector('.game-card--sonic img'), [
+    'https://upload.wikimedia.org/wikipedia/en/b/ba/Sonic_the_Hedgehog_1_Genesis_box_art.jpg',
+    'https://en.wikipedia.org/wiki/Special:Redirect/file/Sonic_the_Hedgehog_1_Genesis_box_art.jpg'
+  ]);
+
+  setCoverWithFallback(document.querySelector('.game-card--tmnt img'), [
+    'https://gamefaqs.gamespot.com/a/box/8/1/5/39815_front.jpg',
+    'https://turtlepedia.fandom.com/wiki/Special:Redirect/file/TMNT-nes.jpg'
+  ]);
+
+  setCoverWithFallback(document.querySelector('.game-card--wile img'), [
+    'https://www.gamesdatabase.org/Media/SYSTEM/Sega_Game_Gear/Box/big/Desert_Speedtrap_Starring_Road_Runner_And_Wile_E._Coyote_-_1993_-_Sega.jpg',
+    'https://gamefaqs.gamespot.com/a/box/4/8/1/48481_front.jpg'
+  ]);
 }
 
 function injectConsoleGallery() {
