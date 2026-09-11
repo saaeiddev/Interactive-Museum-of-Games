@@ -34,6 +34,28 @@ function wireTilt(cards) {
   });
 }
 
+function repairGameCovers() {
+  const tmnt = document.querySelector('.game-card--tmnt img');
+  if (tmnt) {
+    tmnt.src = 'https://gamefaqs.gamespot.com/a/box/7/9/5/49795_front.jpg';
+    tmnt.referrerPolicy = 'no-referrer';
+  }
+
+  const wile = document.querySelector('.game-card--wile img');
+  if (wile) {
+    const primary = 'https://www.gamesdatabase.org/Media/SYSTEM/Sega_Game_Gear/Box/big/Desert_Speedtrap_Starring_Road_Runner_And_Wile_E._Coyote_-_1993_-_Sega.jpg';
+    const fallback = 'https://gamefaqs.gamespot.com/a/box/4/8/1/48481_front.jpg';
+    wile.referrerPolicy = 'no-referrer';
+    wile.onerror = () => {
+      if (wile.src !== fallback) {
+        wile.onerror = null;
+        wile.src = fallback;
+      }
+    };
+    wile.src = primary;
+  }
+}
+
 function injectConsoleGallery() {
   if (!document.querySelector('link[href*="consoles.css"]')) {
     const consoleStyles = document.createElement('link');
@@ -76,6 +98,8 @@ function injectConsoleGallery() {
 }
 
 function initMuseumCards() {
+  repairGameCovers();
+
   const gameCards = [...document.querySelectorAll('[data-game-card]')];
   wireTilt(gameCards);
 
