@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./games.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to museum content</a>
@@ -88,7 +89,108 @@
       <div class="section-kicker">CURATED HISTORY</div>
       <h2>Games live forever.</h2>
       <p>Explore six interactive exhibit families, each reimagined as a cinematic digital museum object. Use mouse, touch, or keyboard to focus the collection.</p>
-      <div class="mini-grid" id="games">
+
+      <section class="game-gallery" id="games" aria-labelledby="games-title">
+        <div class="game-gallery-head">
+          <div>
+            <p class="section-kicker">ICONIC GAMES • ORIGINAL BOX ART</p>
+            <h3 id="games-title">The games that raised generations.</h3>
+          </div>
+          <p>Move across a cover to tilt it in 3D. Each card preserves the original visual identity of a game that became part of gaming history.</p>
+        </div>
+
+        <div class="game-card-grid">
+          <article class="game-card game-card--gta" tabindex="0" data-game-card aria-label="Grand Theft Auto San Andreas game card">
+            <div class="game-card-shell">
+              <div class="game-card-glow" aria-hidden="true"></div>
+              <div class="game-cover">
+                <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg" alt="Original Grand Theft Auto San Andreas cover art" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <span class="game-card-shine" aria-hidden="true"></span>
+              </div>
+              <div class="game-card-meta"><span class="game-era">PS2 • 2004</span><h4>Grand Theft Auto: San Andreas</h4><p>GTA</p></div>
+            </div>
+          </article>
+
+          <article class="game-card game-card--sonic" tabindex="0" data-game-card aria-label="Sonic the Hedgehog game card">
+            <div class="game-card-shell">
+              <div class="game-card-glow" aria-hidden="true"></div>
+              <div class="game-cover">
+                <img src="https://en.wikipedia.org/wiki/Special:Redirect/file/Sonic_the_Hedgehog_1_Genesis_box_art.jpg" alt="Original Sonic the Hedgehog Genesis cover art" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <span class="game-card-shine" aria-hidden="true"></span>
+              </div>
+              <div class="game-card-meta"><span class="game-era">GENESIS • 1991</span><h4>Sonic the Hedgehog</h4><p>Sonic</p></div>
+            </div>
+          </article>
+
+          <article class="game-card game-card--crash" tabindex="0" data-game-card aria-label="Crash Bandicoot game card">
+            <div class="game-card-shell">
+              <div class="game-card-glow" aria-hidden="true"></div>
+              <div class="game-cover">
+                <img src="https://psxdatacenter.com/images/hires/U/C/SCUS-94900/SCUS-94900-F-ALL.jpg" alt="Original Crash Bandicoot PlayStation cover art" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <span class="game-card-shine" aria-hidden="true"></span>
+              </div>
+              <div class="game-card-meta"><span class="game-era">PLAYSTATION • 1996</span><h4>Crash Bandicoot</h4><p>Crash</p></div>
+            </div>
+          </article>
+
+          <article class="game-card game-card--tmnt" tabindex="0" data-game-card aria-label="Teenage Mutant Ninja Turtles game card">
+            <div class="game-card-shell">
+              <div class="game-card-glow" aria-hidden="true"></div>
+              <div class="game-cover">
+                <img src="https://turtlepedia.fandom.com/wiki/Special:Redirect/file/TMNT-nes.jpg" alt="Original Teenage Mutant Ninja Turtles NES cover art" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <span class="game-card-shine" aria-hidden="true"></span>
+              </div>
+              <div class="game-card-meta"><span class="game-era">NES • 1989</span><h4>Teenage Mutant Ninja Turtles</h4><p>TMNT</p></div>
+            </div>
+          </article>
+
+          <article class="game-card game-card--re" tabindex="0" data-game-card aria-label="Resident Evil game card">
+            <div class="game-card-shell">
+              <div class="game-card-glow" aria-hidden="true"></div>
+              <div class="game-cover">
+                <img src="https://psxdatacenter.com/images/hires/U/R/SLUS-00170/SLUS-00170-F2.jpg" alt="Original Resident Evil PlayStation cover art" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <span class="game-card-shine" aria-hidden="true"></span>
+              </div>
+              <div class="game-card-meta"><span class="game-era">PLAYSTATION • 1996</span><h4>Resident Evil</h4><p>Survival Horror</p></div>
+            </div>
+          </article>
+
+          <article class="game-card game-card--simpsons" tabindex="0" data-game-card aria-label="The Simpsons Hit and Run game card">
+            <div class="game-card-shell">
+              <div class="game-card-glow" aria-hidden="true"></div>
+              <div class="game-cover">
+                <img src="https://psxdatacenter.com/psx2/images2/covers/SLES-51897/SLES-51897-F-F.jpg" alt="Original The Simpsons Hit and Run PlayStation 2 cover art" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <span class="game-card-shine" aria-hidden="true"></span>
+              </div>
+              <div class="game-card-meta"><span class="game-era">PS2 • 2003</span><h4>The Simpsons: Hit &amp; Run</h4><p>The Simpsons</p></div>
+            </div>
+          </article>
+
+          <article class="game-card game-card--tekken" tabindex="0" data-game-card aria-label="Tekken 3 game card">
+            <div class="game-card-shell">
+              <div class="game-card-glow" aria-hidden="true"></div>
+              <div class="game-cover">
+                <img src="https://psxdatacenter.com/images/hires/U/T/SLUS-00402/SLUS-00402-F-ALL.jpg" alt="Original Tekken 3 PlayStation cover art" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <span class="game-card-shine" aria-hidden="true"></span>
+              </div>
+              <div class="game-card-meta"><span class="game-era">PLAYSTATION • 1998</span><h4>Tekken 3</h4><p>Tekken</p></div>
+            </div>
+          </article>
+
+          <article class="game-card game-card--wile" tabindex="0" data-game-card aria-label="Wile E Coyote Desert Speedtrap game card">
+            <div class="game-card-shell">
+              <div class="game-card-glow" aria-hidden="true"></div>
+              <div class="game-cover">
+                <img src="https://www.thevideogamecompany.com/cdn/shop/products/desert-speedtrap-starring-road-runner-and-wile-e-coyote-sega-game-gear-10086024425-cover-art.jpg?v=1670904806&amp;width=496" alt="Original Desert Speedtrap starring Road Runner and Wile E. Coyote cover art" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <span class="game-card-shine" aria-hidden="true"></span>
+              </div>
+              <div class="game-card-meta"><span class="game-era">GAME GEAR • CLASSIC</span><h4>Desert Speedtrap</h4><p>Wile E. Coyote</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="mini-grid">
         <article><span>01</span><h3>Handhelds</h3><p>Portable worlds that turned train rides, bedrooms and school breaks into adventures.</p></article>
         <article><span>02</span><h3>Arcade</h3><p>Neon cabinets, glowing marquees and the communal magic of one more coin.</p></article>
         <article id="artifacts"><span>03</span><h3>Artifacts</h3><p>Controllers, cartridges, displays and the tactile objects that shaped play.</p></article>
@@ -152,6 +254,7 @@
   </dialog>
 
   <noscript><div class="noscript">This museum uses JavaScript for its interactive 3D exhibition.</div></noscript>
+  <script src="./games.js" defer></script>
   <script type="module" src="./app.js"></script>
 </body>
 </html>
