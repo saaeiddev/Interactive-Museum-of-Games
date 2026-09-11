@@ -38,7 +38,7 @@ function injectConsoleGallery() {
   if (!document.querySelector('link[href*="consoles.css"]')) {
     const consoleStyles = document.createElement('link');
     consoleStyles.rel = 'stylesheet';
-    consoleStyles.href = './consoles.css?v=20260911-3';
+    consoleStyles.href = './consoles.css?v=20260911-4';
     document.head.appendChild(consoleStyles);
   }
 
@@ -69,7 +69,7 @@ function injectConsoleGallery() {
         <div class="console-card-shell"><div class="console-card-glow"></div><div class="console-stage"><div class="museum-object"><div class="psp"><div class="psp-screen"></div><div class="psp-dpad"></div><div class="psp-stick"></div><div class="psp-buttons"></div><div class="psp-logo">PSP</div></div></div></div><div class="console-meta"><span class="console-era">SONY • 2004</span><h4>PSP</h4><p>A glossy portable console that put ambitious 3D games in your hands.</p></div></div>
       </article>
     </div>
-    <p style="margin:18px 0 0;color:#77879a;font-size:10px;letter-spacing:.12em">CONSOLE WING • BUILD 20260911.3</p>`;
+    <p style="margin:18px 0 0;color:#77879a;font-size:10px;letter-spacing:.12em">CONSOLE WING • BUILD 20260911.4</p>`;
 
   gamesGallery.parentNode.insertBefore(consoleGallery, gamesGallery);
   wireTilt([...consoleGallery.querySelectorAll('[data-console-card]')]);
