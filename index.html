@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070d18" />
+  <meta name="description" content="Interactive Museum of Games — a cinematic 3D celebration of nostalgic games and iconic consoles." />
+  <title>Interactive Museum of Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to museum content</a>
+  <div id="webgl" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="site-header" aria-label="Primary navigation">
+    <a class="brand" href="#home" aria-label="Interactive Museum of Games home">
+      <span class="brand-mark" aria-hidden="true">▦</span>
+      <span class="brand-copy"><strong>Interactive</strong><small>Museum of Games</small></span>
+    </a>
+    <nav class="nav-pill" aria-label="Museum sections">
+      <a class="active" href="#home">Home</a>
+      <a href="#exhibits">Exhibits</a>
+      <a href="#consoles">Consoles</a>
+      <a href="#games">Games</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="searchBtn" aria-label="Search the museum">⌕</button>
+      <button class="visit-button" id="visitBtn"><span aria-hidden="true">▱</span> Plan Your Visit</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <p class="eyebrow">PAST <span>•</span> PLAY <span>•</span> PRESERVE <span>•</span> TOGETHER</p>
+      <h1 id="hero-title">Interactive<br><em>Museum of Games</em></h1>
+      <p class="hero-subtitle">A 3D journey through nostalgic games and iconic consoles.</p>
+      <div class="hero-actions">
+        <button class="cta primary" id="exploreBtn">Start Exploring <span>→</span></button>
+        <button class="cta secondary" id="trailerBtn"><span class="play">▶</span> Watch Trailer</button>
+      </div>
+    </section>
+
+    <aside class="banner banner-left" aria-label="Museum motto">PLAY<br>EXPLORE<br>LEARN<br>BELONG</aside>
+    <aside class="banner banner-right" aria-label="Museum motto">GAMES<br>CONNECT<br>GENERATIONS</aside>
+    <div class="wall-sign" aria-hidden="true">GOOD<br>GAMES<br>KINDER<br>PEOPLE</div>
+    <div class="plaque plaque-left" aria-hidden="true">DIFFERENT<br>GAMES<br>SAME<br>CHILDHOOD</div>
+    <div class="plaque plaque-right" aria-hidden="true">MORE<br>THAN<br>GAMES<br>A BRIGHTER<br>YOU</div>
+    <div class="ambient-copy left" aria-hidden="true">A BRIGHTER<br>WORLD<br>THROUGH<br>GAMES</div>
+    <div class="ambient-copy handwritten" aria-hidden="true">Still<br>Playing<br>Together</div>
+
+    <section class="exhibit-labels" id="exhibits" aria-label="Featured exhibits">
+      <button class="exhibit-card handhelds" data-exhibit="handhelds">
+        <span><strong>Handhelds</strong><small>Big adventures.<br>Small screens.</small></span><i>→</i>
+      </button>
+      <button class="exhibit-card arcade" data-exhibit="arcade">
+        <span><strong>Arcade Machines</strong><small>Where legends<br>were born.</small></span><i>→</i>
+      </button>
+      <button class="exhibit-card home-console" data-exhibit="console">
+        <span><strong>Home Consoles</strong><small>The heart of home gaming.</small></span><i>→</i>
+      </button>
+      <button class="exhibit-card controllers" data-exhibit="controllers">
+        <span><strong>Controllers</strong><small>Feel the connection.</small></span><i>→</i>
+      </button>
+      <button class="exhibit-card library" data-exhibit="library">
+        <span><strong>Game Library</strong><small>Stories in every cartridge.</small></span><i>→</i>
+      </button>
+      <button class="exhibit-card displays" data-exhibit="display">
+        <span><strong>Iconic Displays</strong><small>A window to<br>other worlds.</small></span><i>→</i>
+      </button>
+    </section>
+
+    <section class="categories" aria-label="Museum categories">
+      <a href="#consoles" class="category-card"><b class="cat-icon">🎮</b><span><strong>Consoles</strong><small>From pixels to 3D.</small></span></a>
+      <a href="#games" class="category-card"><b class="cat-icon purple">▣</b><span><strong>Games</strong><small>Timeless adventures.</small></span></a>
+      <a href="#artifacts" class="category-card"><b class="cat-icon blue">▥</b><span><strong>Artifacts</strong><small>Rare. Real. Remarkable.</small></span></a>
+      <a href="#timeline" class="category-card"><b class="cat-icon cyan">◷</b><span><strong>Timeline</strong><small>See how it all evolved.</small></span></a>
+      <a href="#learn" class="category-card"><b class="cat-icon">🎮</b><span><strong>Play & Learn</strong><small>Interactive exhibits.</small></span></a>
+    </section>
+
+    <section class="below-fold" id="consoles">
+      <div class="section-kicker">CURATED HISTORY</div>
+      <h2>Games live forever.</h2>
+      <p>Explore six interactive exhibit families, each reimagined as a cinematic digital museum object. Use mouse, touch, or keyboard to focus the collection.</p>
+      <div class="mini-grid" id="games">
+        <article><span>01</span><h3>Handhelds</h3><p>Portable worlds that turned train rides, bedrooms and school breaks into adventures.</p></article>
+        <article><span>02</span><h3>Arcade</h3><p>Neon cabinets, glowing marquees and the communal magic of one more coin.</p></article>
+        <article id="artifacts"><span>03</span><h3>Artifacts</h3><p>Controllers, cartridges, displays and the tactile objects that shaped play.</p></article>
+      </div>
+    </section>
+
+    <section class="timeline-section" id="timeline">
+      <div><small>1970s</small><b>Arcades arrive</b></div><span></span><div><small>1980s</small><b>Home play grows</b></div><span></span><div><small>1990s</small><b>3D changes everything</b></div><span></span><div><small>2000s+</small><b>Connected worlds</b></div>
+    </section>
+
+    <section class="about" id="about">
+      <p class="section-kicker">ABOUT THE EXPERIENCE</p>
+      <h2>A museum built for memory.</h2>
+      <p>This interactive homepage uses real-time WebGL geometry, responsive glass UI, cinematic lighting, keyboard-accessible controls and motion-aware performance fallbacks.</p>
+      <button class="cta primary" id="learnMoreBtn">Enter the Collection →</button>
+    </section>
+
+    <section class="learn" id="learn" aria-label="Play and learn">
+      <p>PLAY • LEARN • PRESERVE</p>
+    </section>
+  </main>
+
+  <button id="audioToggle" class="audio-toggle" aria-pressed="false" aria-label="Toggle ambient museum sound">♫</button>
+
+  <dialog id="exhibitDialog" class="museum-dialog">
+    <button class="dialog-close" data-close aria-label="Close exhibit details">×</button>
+    <p class="dialog-kicker">FEATURED EXHIBIT</p>
+    <h2 id="dialogTitle">Home Consoles</h2>
+    <p id="dialogBody">The heart of home gaming.</p>
+    <div class="dialog-meta"><span>Interactive object</span><span>3D focus mode</span><span>Keyboard accessible</span></div>
+    <button class="cta primary" data-close>Back to Hall →</button>
+  </dialog>
+
+  <dialog id="trailerDialog" class="trailer-dialog">
+    <button class="dialog-close" data-close-trailer aria-label="Close trailer">×</button>
+    <div class="trailer-frame" aria-label="Animated museum trailer preview">
+      <div class="scanlines"></div>
+      <span class="trailer-pixel p1"></span><span class="trailer-pixel p2"></span><span class="trailer-pixel p3"></span>
+      <div class="trailer-copy"><small>PAST • PLAY • PRESERVE</small><strong>GAMES<br>LIVE FOREVER</strong><em>Interactive Museum of Games</em></div>
+    </div>
+  </dialog>
+
+  <dialog id="visitDialog" class="visit-dialog">
+    <button class="dialog-close" data-close-visit aria-label="Close visit planner">×</button>
+    <p class="dialog-kicker">PLAN YOUR VISIT</p>
+    <h2>Your digital museum pass</h2>
+    <p>No ticket needed. Pick a wing and jump directly into the exhibition.</p>
+    <div class="visit-grid">
+      <button data-visit="arcade">Arcade Wing</button>
+      <button data-visit="console">Console Hall</button>
+      <button data-visit="handhelds">Handheld Archive</button>
+      <button data-visit="display">Display Gallery</button>
+    </div>
+  </dialog>
+
+  <dialog id="searchDialog" class="search-dialog">
+    <button class="dialog-close" data-close-search aria-label="Close search">×</button>
+    <label for="museumSearch">Search the collection</label>
+    <input id="museumSearch" type="search" placeholder="Try ‘arcade’, ‘console’, ‘controller’…" autocomplete="off" />
+    <div id="searchResults" class="search-results" aria-live="polite"></div>
+  </dialog>
+
+  <noscript><div class="noscript">This museum uses JavaScript for its interactive 3D exhibition.</div></noscript>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
