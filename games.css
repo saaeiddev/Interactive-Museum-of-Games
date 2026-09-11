@@ -1,0 +1,252 @@
+/* Interactive Museum of Games — animated 3D cover gallery */
+.game-gallery{
+  position:relative;
+  margin-top:58px;
+  padding:38px 0 12px;
+  perspective:1500px;
+  isolation:isolate;
+}
+.game-gallery::before{
+  content:"";
+  position:absolute;
+  inset:-50px -5vw -30px;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 22%,rgba(237,171,77,.11),transparent 30%),
+    radial-gradient(circle at 82% 38%,rgba(53,126,225,.12),transparent 34%);
+  filter:blur(8px);
+}
+.game-gallery-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:32px;
+  margin-bottom:30px;
+}
+.game-gallery-head h3{
+  margin:8px 0 0;
+  max-width:760px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(38px,4.8vw,66px);
+  line-height:.95;
+  letter-spacing:-.025em;
+  color:#fff5df;
+}
+.game-gallery-head>p{
+  max-width:360px;
+  margin:0 0 5px;
+  color:#9caaba;
+  font-size:13px;
+  line-height:1.65;
+}
+.game-card-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:22px;
+  align-items:start;
+}
+.game-card{
+  --rx:0deg;
+  --ry:0deg;
+  --mx:50%;
+  --my:50%;
+  --accent:244,189,98;
+  position:relative;
+  min-width:0;
+  opacity:0;
+  transform:translateY(28px) scale(.97);
+  transition:opacity .65s ease,transform .65s cubic-bezier(.2,.72,.2,1);
+  transition-delay:var(--delay,0ms);
+  outline:none;
+  cursor:default;
+}
+.game-card.is-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+.game-card-shell{
+  position:relative;
+  transform-style:preserve-3d;
+  transform:rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
+  transition:transform .22s cubic-bezier(.2,.75,.25,1),filter .3s ease;
+  will-change:transform;
+}
+.game-card:hover .game-card-shell,
+.game-card:focus-visible .game-card-shell{
+  transform:rotateX(var(--rx)) rotateY(var(--ry)) translateY(-10px) translateZ(20px) scale(1.025);
+  filter:drop-shadow(0 28px 26px rgba(0,0,0,.38));
+}
+.game-card-shell::before{
+  content:"";
+  position:absolute;
+  top:10px;
+  bottom:16px;
+  right:-9px;
+  width:10px;
+  border-radius:0 8px 8px 0;
+  background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(7,11,18,.85));
+  transform:translateZ(-10px) rotateY(35deg);
+  transform-origin:left center;
+  opacity:.72;
+}
+.game-card-shell::after{
+  content:"";
+  position:absolute;
+  left:13px;
+  right:4px;
+  bottom:-8px;
+  height:9px;
+  border-radius:0 0 9px 9px;
+  background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(4,8,14,.9));
+  transform:translateZ(-8px) rotateX(-28deg);
+  transform-origin:top center;
+  opacity:.8;
+}
+.game-card-glow{
+  position:absolute;
+  inset:7% 5% 19%;
+  z-index:-1;
+  border-radius:30px;
+  background:rgba(var(--accent),.3);
+  filter:blur(30px);
+  opacity:.14;
+  transform:translateZ(-40px) scale(.93);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.game-card:hover .game-card-glow,
+.game-card:focus-visible .game-card-glow{
+  opacity:.38;
+  transform:translateZ(-45px) scale(1.03);
+}
+.game-cover{
+  position:relative;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(255,235,199,.2);
+  background:linear-gradient(145deg,#182337,#080d15);
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.34),
+    inset 0 1px rgba(255,255,255,.12),
+    0 0 0 1px rgba(var(--accent),.04);
+  transform:translateZ(24px);
+}
+.game-cover::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.09),inset 0 -60px 70px rgba(1,4,9,.13);
+}
+.game-cover img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  transform:scale(1.008);
+  transition:transform .55s cubic-bezier(.2,.75,.2,1),filter .4s ease;
+}
+.game-card:hover .game-cover img,
+.game-card:focus-visible .game-cover img{
+  transform:scale(1.045);
+  filter:saturate(1.07) contrast(1.03);
+}
+.game-card-shine{
+  position:absolute;
+  inset:-1px;
+  pointer-events:none;
+  opacity:0;
+  mix-blend-mode:screen;
+  background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.48),rgba(255,224,167,.11) 19%,transparent 42%);
+  transition:opacity .25s ease;
+}
+.game-card:hover .game-card-shine,
+.game-card:focus-visible .game-card-shine{opacity:.58}
+.game-card-meta{
+  position:relative;
+  margin:-16px 10px 0;
+  min-height:112px;
+  padding:18px 18px 16px;
+  z-index:4;
+  transform:translateZ(38px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(18,27,42,.88),rgba(7,12,20,.94));
+  backdrop-filter:blur(16px) saturate(1.15);
+  box-shadow:0 14px 32px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.06);
+}
+.game-card-meta::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:18px;
+  right:18px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent),.75),transparent);
+  opacity:.75;
+}
+.game-era{
+  display:block;
+  margin-bottom:7px;
+  color:rgb(var(--accent));
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.game-card-meta h4{
+  margin:0;
+  color:#fff8e8;
+  font-size:15px;
+  line-height:1.23;
+}
+.game-card-meta p{
+  margin:7px 0 0;
+  color:#8f9baa;
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.game-card:focus-visible .game-cover{
+  outline:2px solid rgba(255,222,157,.92);
+  outline-offset:4px;
+}
+.game-card--gta{--accent:246,187,84}
+.game-card--sonic{--accent:64,155,255}
+.game-card--crash{--accent:255,140,46}
+.game-card--tmnt{--accent:90,221,104}
+.game-card--re{--accent:205,66,66}
+.game-card--simpsons{--accent:255,220,55}
+.game-card--tekken{--accent:231,79,84}
+.game-card--wile{--accent:239,167,64}
+
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .game-card.is-visible:nth-child(odd){animation:gameFloat 6.6s ease-in-out infinite 1.2s}
+  .game-card.is-visible:nth-child(even){animation:gameFloat 7.4s ease-in-out infinite 1.8s reverse}
+  .game-card:hover,.game-card:focus-visible{animation-play-state:paused}
+}
+@keyframes gameFloat{
+  0%,100%{translate:0 0}
+  50%{translate:0 -5px}
+}
+@media (max-width:1100px){
+  .game-card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  .game-gallery-head{align-items:start;flex-direction:column;gap:12px}
+  .game-gallery-head>p{max-width:620px}
+}
+@media (max-width:620px){
+  .game-gallery{margin-top:42px;padding-top:20px}
+  .game-card-grid{grid-template-columns:1fr;gap:28px}
+  .game-card{width:min(100%,340px);margin-inline:auto}
+  .game-gallery-head h3{font-size:44px}
+  .game-card-meta{min-height:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  .game-card,.game-card-shell,.game-cover img,.game-card-glow{transition:none!important;animation:none!important}
+  .game-card{opacity:1;transform:none}
+  .game-card-shell,.game-card:hover .game-card-shell,.game-card:focus-visible .game-card-shell{transform:none}
+  .game-card-shine{display:none}
+}
