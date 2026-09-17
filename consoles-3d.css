@@ -1,0 +1,17 @@
+/* Real WebGL console exhibits — scoped only to Nostalgic Console Collection. */
+.console-stage{min-height:300px;overflow:hidden;isolation:isolate}
+.console-viewport{position:relative;width:100%;height:300px;display:block;overflow:hidden;border-radius:18px;cursor:grab;touch-action:none;transform:translateZ(28px);background:radial-gradient(circle at 50% 24%,rgba(232,242,255,.11),transparent 28%),radial-gradient(ellipse at 50% 78%,rgba(82,132,190,.16),transparent 48%)}
+.console-viewport:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;box-shadow:inset 0 1px rgba(255,255,255,.07),inset 0 -28px 48px rgba(0,0,0,.14)}
+.console-viewport:after{content:"DRAG TO ROTATE";position:absolute;left:50%;bottom:10px;z-index:3;transform:translateX(-50%);padding:5px 8px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(5,10,18,.38);backdrop-filter:blur(10px);color:rgba(215,228,242,.55);font:600 8px/1 "DM Sans",sans-serif;letter-spacing:.14em;white-space:nowrap;transition:opacity .25s ease}
+.console-viewport.is-ready:hover:after,.console-viewport.is-dragging:after{opacity:.18}
+.console-viewport.is-dragging{cursor:grabbing}
+.console-viewport canvas{display:block;width:100%;height:100%;outline:none;filter:saturate(.96) contrast(1.02)}
+.console-card:focus-visible .console-viewport{box-shadow:0 0 0 1px rgba(244,189,98,.45),0 0 28px rgba(244,189,98,.08)}
+.console-card-shell{overflow:hidden}
+.console-stage:before,.console-stage:after{pointer-events:none}
+.console-meta{position:relative;z-index:4}
+.console-viewport.has-fallback{display:grid;place-items:center}
+.console-viewport.has-fallback:before{content:"3D preview unavailable";position:relative;z-index:3;color:#9ba7b7;font-size:11px;letter-spacing:.08em}
+@media(max-width:900px){.console-viewport{height:280px}.console-stage{min-height:280px}}
+@media(max-width:620px){.console-viewport{height:250px;border-radius:15px}.console-stage{min-height:250px}.console-viewport:after{font-size:7px;bottom:8px}}
+@media(prefers-reduced-motion:reduce){.console-viewport:after{content:"DRAG TO ROTATE"}.console-card{transition:none!important}}
