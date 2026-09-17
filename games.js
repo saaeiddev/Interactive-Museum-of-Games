@@ -22,7 +22,10 @@ function wireTilt(cards) {
   cards.forEach((card, index) => {
     card.style.setProperty('--delay', `${Math.min(index * 70, 420)}ms`);
     resetTilt(card);
-    card.addEventListener('pointermove', event => tiltFromPointer(event, card));
+    card.addEventListener('pointermove', event => {
+      if (event.target.closest?.('.console-viewport')) return;
+      tiltFromPointer(event, card);
+    });
     card.addEventListener('pointerleave', () => resetTilt(card));
     card.addEventListener('blur', () => resetTilt(card));
     card.addEventListener('focus', () => {
@@ -71,6 +74,13 @@ function injectConsoleGallery() {
     document.head.appendChild(consoleStyles);
   }
 
+  if (!document.querySelector('link[href*="consoles-3d.css"]')) {
+    const console3DStyles = document.createElement('link');
+    console3DStyles.rel = 'stylesheet';
+    console3DStyles.href = './consoles-3d.css?v=20260917-1';
+    document.head.appendChild(console3DStyles);
+  }
+
   const consolesAnchor = document.querySelector('#consoles');
   const gamesGallery = document.querySelector('#games');
   if (!consolesAnchor || !gamesGallery || document.querySelector('.console-gallery')) return;
@@ -89,19 +99,24 @@ function injectConsoleGallery() {
     </div>
     <div class="console-grid">
       <article class="console-card" tabindex="0" data-console-card aria-label="Original PlayStation 3D exhibit">
-        <div class="console-card-shell"><div class="console-card-glow"></div><div class="console-stage"><div class="museum-object"><div class="ps1"><div class="ps1-base"></div><div class="ps1-lid"></div><span class="ps1-btn left"></span><span class="ps1-btn right"></span><span class="ps1-port p1"></span><span class="ps1-port p2"></span><div class="ps1-controller"><span class="pad"></span><span class="buttons"></span></div></div></div></div><div class="console-meta"><span class="console-era">SONY • 1994</span><h4>PlayStation</h4><p>The original grey icon that helped define the 3D era.</p></div></div>
+        <div class="console-card-shell"><div class="console-card-glow"></div><div class="console-stage"><div class="console-viewport" data-console-model="ps1" role="img" aria-label="Interactive real-time 3D model of an original PlayStation console"></div></div><div class="console-meta"><span class="console-era">SONY • 1994</span><h4>PlayStation</h4><p>The original grey icon that helped define the 3D era.</p></div></div>
       </article>
       <article class="console-card" tabindex="0" data-console-card aria-label="Nintendo Entertainment System 3D exhibit">
-        <div class="console-card-shell"><div class="console-card-glow"></div><div class="console-stage"><div class="museum-object"><div class="nes"><div class="nes-body"></div><div class="nes-door"></div><div class="nes-stripe"></div><div class="nes-controller"><span class="nes-red"></span></div></div></div></div><div class="console-meta"><span class="console-era">NINTENDO • 1983/1985</span><h4>Nintendo Entertainment System</h4><p>Cartridges, pixel worlds and an unmistakable retro silhouette.</p></div></div>
+        <div class="console-card-shell"><div class="console-card-glow"></div><div class="console-stage"><div class="console-viewport" data-console-model="nes" role="img" aria-label="Interactive real-time 3D model of a Nintendo Entertainment System console"></div></div><div class="console-meta"><span class="console-era">NINTENDO • 1983/1985</span><h4>Nintendo Entertainment System</h4><p>Cartridges, pixel worlds and an unmistakable retro silhouette.</p></div></div>
       </article>
       <article class="console-card" tabindex="0" data-console-card aria-label="PSP 3D exhibit">
-        <div class="console-card-shell"><div class="console-card-glow"></div><div class="console-stage"><div class="museum-object"><div class="psp"><div class="psp-screen"></div><div class="psp-dpad"></div><div class="psp-stick"></div><div class="psp-buttons"></div><div class="psp-logo">PSP</div></div></div></div><div class="console-meta"><span class="console-era">SONY • 2004</span><h4>PSP</h4><p>A glossy portable console that put ambitious 3D games in your hands.</p></div></div>
+        <div class="console-card-shell"><div class="console-card-glow"></div><div class="console-stage"><div class="console-viewport" data-console-model="psp" role="img" aria-label="Interactive real-time 3D model of a Sony PSP handheld"></div></div><div class="console-meta"><span class="console-era">SONY • 2004</span><h4>PSP</h4><p>A glossy portable console that put ambitious 3D games in your hands.</p></div></div>
       </article>
     </div>
     <p style="margin:18px 0 0;color:#77879a;font-size:10px;letter-spacing:.12em">CONSOLE WING • BUILD 20260911.4</p>`;
 
   gamesGallery.parentNode.insertBefore(consoleGallery, gamesGallery);
   wireTilt([...consoleGallery.querySelectorAll('[data-console-card]')]);
+
+  import('./consoles-3d.js?v=20260917-1').catch(error => {
+    console.error('Unable to load real-time console models:', error);
+    consoleGallery.querySelectorAll('.console-viewport').forEach(viewport => viewport.classList.add('has-fallback'));
+  });
 }
 
 function initMuseumCards() {
